@@ -1,0 +1,44 @@
+﻿{% extends 'base.html' %}
+{% load comments %}
+{% load staticfiles %}
+<title>{% block title %}block{% endblock %}</title>>
+<!--------------Content--------------->
+
+{% block content %}
+
+{%get_comment_form for post as form%}
+<form action='success.html' method='get'>
+    {% csrf_token %}
+    {{form.object_pk}}
+    {{form.content_type}}
+    {{form.timestamp}}
+    {{form.security_hash}}
+    <p><label for="id_name">姓名（必填）：</label><input name="name" id="id_name"></p>
+    <p><label for="id_email">邮箱（必填）：</label><input name="email" id="id_email"></p>
+    <p><label for="id_url">网站（可选）：</label><input name="url" id="id_url"></p>
+    <p><label for="id_comment">评论（必填）：</label></p>
+    <p><textarea id="id_comment" rows="10" cols="40" name="comment"></textarea></p>
+    <p style="display:none;"><label for="id_honeypot">如果你在该字段中输入任何内容，那么你的评论就会被视为垃圾评论。</label> <input type="text" name="honeypot" id="id_honeypot"></p>
+    <p><input name="post" value="发表" type="submit" /></p>
+
+</form>
+
+<h1>登录页面：</h1>
+<form method = 'post' enctype="multipart/form-data">
+    {{uf.as_p}}
+    <input type="submit" value = "ok" />
+</form>
+
+
+
+    请<a href=”/accounts/login”>登录</a>，或<a href=”/accounts/register”>注册</a>后再评论
+
+
+
+
+
+
+
+
+
+{% endblock %}

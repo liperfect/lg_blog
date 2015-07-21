@@ -1,0 +1,14 @@
+﻿{% extends 'base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %}blog{% endblock %}<title>
+
+<!--------------Content--------------->
+{% block content %}
+      {% for post in posts %}
+      <h2>文章标题：{{  post.title }}</h2>
+      <p>发表时间：{{ post.timestamp | date:"1,F jS"}}</p>
+      <p>内容：{{ post.body }}</p>
+      {% endfor %}
+{% endblock %}
+<!--------------Footer--------------->
