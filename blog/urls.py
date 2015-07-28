@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
-from blogapp import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,8 +11,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',views.index)
-)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^$', 'blog.apps.article.views.index')
+)
 
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
